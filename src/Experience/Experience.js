@@ -9,6 +9,7 @@ import World from './World/World.js'
 import Resources from './Utils/Resources.js'
 
 import sources from './sources.js'
+import { ThirdPersonCamera } from './ThirdPersonCamera.js'
 
 let instance = null
 
@@ -22,7 +23,7 @@ export default class Experience
             return instance
         }
         instance = this
-        
+
         // Global access
         window.experience = this
 
@@ -35,7 +36,7 @@ export default class Experience
         this.time = new Time()
         this.scene = new THREE.Scene()
         this.resources = new Resources(sources)
-        this.camera = new Camera()
+        this.camera = new ThirdPersonCamera();
         this.renderer = new Renderer()
         this.world = new World()
 
@@ -54,14 +55,17 @@ export default class Experience
 
     resize()
     {
-        this.camera.resize()
+        if (this.camera) {
+            this.camera._camera.resize();
+        }
+
         this.renderer.resize()
     }
 
     update()
     {
-        this.camera.update()
         this.world.update()
+        this.camera.Update(this.time.delta);
         this.renderer.update()
     }
 
@@ -69,7 +73,6 @@ export default class Experience
     {
         this.sizes.off('resize')
         this.time.off('tick')
-
         // Traverse the whole scene
         this.scene.traverse((child) =>
         {
@@ -92,7 +95,6 @@ export default class Experience
             }
         })
 
-        this.camera.controls.dispose()
         this.renderer.instance.dispose()
 
         if(this.debug.active)

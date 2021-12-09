@@ -5,25 +5,41 @@ import { CharacterFSM } from "./CharacterFSM";
 
 export class CharacterController {
   constructor(params) {
+
     this._Init(params);
   }
 
   _Init(params) {
     this.experience = new Experience();
-    this.resources = this.experience.resources;
     this.scene = this.experience.scene;
-    this.resource = this.resources.items.foxModel;
     this._decceleration = new THREE.Vector3(-0.0005, -0.0001, -5.0);
     this._acceleration = new THREE.Vector3(1, 0.25, 50.0);
     this._velocity = new THREE.Vector3(0, 0, 0);
-
+    this._position = new THREE.Vector3();
+    this.model;
     this._animations = {};
     this._input = new CharacterControllerInput();
     this._stateMachine = new CharacterFSM(new CharacterControllerProxy(this._animations));
+  }
 
+  LoadResources() {
+    this.resources = this.experience.resources;
+    this.resource = this.resources.items.foxModel;
     this._LoadModels();
     this._LoadAnimations();
   }
+
+  get Position() {
+    return this._position;
+  }
+
+  get Rotation() {
+    if (!this.model) {
+      return new THREE.Quaternion();
+    }
+    return this.model.quaternion;
+  }
+
 
   _LoadModels() {
     this.model = this.resource.scene;
@@ -54,7 +70,6 @@ export class CharacterController {
       loadAnimations('walk', this.resource.animations[1]);
       loadAnimations('run', this.resource.animations[2]);
       this._stateMachine.SetState('idle');
-      window.x = this;
   }
 
   Update(timeInSeconds) {
@@ -127,6 +142,8 @@ export class CharacterController {
 
     controlObject.position.add(forward);
     controlObject.position.add(sideways);
+
+    this._position.copy(controlObject.position);
 
     oldPosition.copy(controlObject.position);
 
