@@ -12,15 +12,45 @@ export default [
             'textures/environmentMap/nz.jpg'
         ]
     },
+    // {
+    //     name: 'grassColorTexture',
+    //     type: 'texture',
+    //     path: 'textures/dirt/color.jpg'
+    // },
+    // {
+    //     name: 'grassNormalTexture',
+    //     type: 'texture',
+    //     path: 'textures/dirt/normal.jpg'
+    // },
+    // {
+    //     name: 'grassColorTexture',
+    //     type: 'texture',
+    //     path: 'textures/grass/color.jpg'
+    // },
+    // {
+    //     name: 'grassNormalTexture',
+    //     type: 'texture',
+    //     path: 'textures/grass/normal.jpg'
+    // },
+    // {
+    //     name: 'grassDisplacementTexture',
+    //     type: 'texture',
+    //     path: 'textures/grass/displacement.jpg'
+    // },
     {
         name: 'grassColorTexture',
         type: 'texture',
-        path: 'textures/dirt/color.jpg'
+        path: 'textures/grass2/color.jpg'
     },
     {
         name: 'grassNormalTexture',
         type: 'texture',
-        path: 'textures/dirt/normal.jpg'
+        path: 'textures/grass/normal.jpg'
+    },
+    {
+        name: 'grassDisplacementTexture',
+        type: 'texture',
+        path: 'textures/grass/displacement.jpg'
     },
     {
         name: 'foxModel',
