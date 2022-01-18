@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import { MeshBasicMaterial, MeshStandardMaterial, PlaneGeometry } from 'three';
 import Experience from '../Experience.js'
 import FloorMaterial from '../Materials/Floor/Floor';
 
@@ -111,5 +112,12 @@ export default class Floor
         this.mesh.updateMatrix()
         // this.mesh.receiveShadow = true
         this.scene.add(this.mesh)
+        const a = new THREE.Mesh(new PlaneGeometry(20, 20, 5, 5), new MeshBasicMaterial({
+            color: 0xff0000,
+            wireframe: true,
+        }))
+        a.rotation.x = - Math.PI * 0.5
+        a.position.set(0, 0, 0)
+        this.scene.add(a)
     }
 }
