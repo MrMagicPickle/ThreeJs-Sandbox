@@ -1,7 +1,8 @@
-import { MeshBasicMaterial, PlaneGeometry } from 'three';
+import { Mesh, MeshBasicMaterial, PlaneGeometry } from 'three';
 import { math } from '../Utils/Math';
 import * as THREE from 'three';
 import Experience from '../Experience';
+import uniqid from 'uniqid';
 
 export class SpatialHash_Slow {
   constructor(bounds, dimensions) {
@@ -9,6 +10,14 @@ export class SpatialHash_Slow {
     this._cells = new Map();
     this._dimensions = dimensions;
     this._bounds = bounds;
+    const spatialMesh = new Mesh(new PlaneGeometry(bounds[1][0] - bounds[0][0], bounds[1][1] - bounds[0][1], x, y), new MeshBasicMaterial({
+      wireframe: true,
+      color: 0xff00ff,
+    }));
+
+    spatialMesh.rotation.x = - Math.PI * 0.5;
+    spatialMesh.position.set(0, 0, 0);
+    new Experience().scene.add(spatialMesh);
   }
 
   _GetCellIndex(position) {
@@ -32,6 +41,7 @@ export class SpatialHash_Slow {
       position: position,
       dimensions: dimensions,
       indices: null,
+      id: uniqid(),
     };
 
     this._Insert(client);
