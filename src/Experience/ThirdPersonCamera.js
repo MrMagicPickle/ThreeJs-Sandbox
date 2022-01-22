@@ -9,11 +9,18 @@ export class ThirdPersonCamera {
     this.target;
     this._currentPosition = new THREE.Vector3(0, 0, 0);
     this._currentLookat = new THREE.Vector3(0, 0, 0);
+    this.isPovMode = false;
+    window.camera = this;
   }
 
   _CalculateIdealOffset() {
     if (this.target) {
-      const idealOffset = new THREE.Vector3(-15, 20, -30);
+      let idealOffset
+      if (!this.isPovMode) {
+        idealOffset = new THREE.Vector3(-15, 20, -30);
+      } else {
+        idealOffset = new THREE.Vector3(0, 2, -30);
+      }
       idealOffset.applyQuaternion(this.target.Rotation);
       idealOffset.add(this.target.Position);
       return idealOffset;
@@ -22,7 +29,13 @@ export class ThirdPersonCamera {
 
   _CalculateIdealLookat() {
     if (this.target) {
-      const idealLookat = new THREE.Vector3(0, 5, 0);
+      let idealLookat;
+      if (!this.isPovMode) {
+        idealLookat = new THREE.Vector3(0, 5, 0);
+      } else {
+        idealLookat = new THREE.Vector3(0, 8, 0);
+      }
+
       idealLookat.applyQuaternion(this.target.Rotation);
       idealLookat.add(this.target.Position);
       return idealLookat;
