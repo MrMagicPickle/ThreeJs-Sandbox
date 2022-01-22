@@ -6,6 +6,7 @@ import Floor from './Floor.js'
 import { SpatialHash_Slow } from './SpatialHashGrid.js'
 import { Tree } from './Tree/Tree.js'
 import { ZoneClient } from './Zone/ZoneClient.js'
+import * as THREE from 'three';
 
 export default class World {
   constructor()
@@ -33,6 +34,24 @@ export default class World {
       this._controls.LoadResources();
       this.foxClient = this.spatialHashGrid.NewClient([this._controls.Position.x, this._controls.Position.z], [5, 5]);
       this.experience.camera.setTarget(this._controls);
+
+      /* Test text plane on wall */
+      const textPlaneTexture = this.experience.resources.items.careerText1;
+      const textPlaneGeometry = new THREE.PlaneGeometry(10, 5);
+      const textPlaneMaterial = new THREE.MeshBasicMaterial({ map: textPlaneTexture, alphaMap: textPlaneTexture, transparent: true, color: 0x0000ff });
+      const textPlane = new THREE.Mesh(textPlaneGeometry, textPlaneMaterial);
+
+      textPlane.position.set(0, 5, -30);
+      this.scene.add(textPlane);
+
+      /* Test text plane on floor */
+      // const textPlaneTexture = this.experience.resources.items.careerText1;
+      // const textPlaneGeometry = new THREE.PlaneGeometry(10, 5);
+      // const textPlaneMaterial = new THREE.MeshBasicMaterial({ map: textPlaneTexture, alphaMap: textPlaneTexture, transparent: true, color: 0x0000ff });
+      const floorPlane = new THREE.Mesh(textPlaneGeometry, textPlaneMaterial);
+      floorPlane.position.set(0, 0, -30);
+      floorPlane.rotation.x = - Math.PI * 0.25;
+      this.scene.add(floorPlane);
     });
   }
 

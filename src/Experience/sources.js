@@ -56,5 +56,10 @@ export default [
         name: 'foxModel',
         type: 'gltfModel',
         path: 'models/Fox/glTF/Fox.gltf'
-    }
+    },
+    {
+        name: 'careerText1',
+        type: 'texture',
+        path: 'textures/career/career-configura.png'
+    },
 ]
