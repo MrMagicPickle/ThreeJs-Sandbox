@@ -22,7 +22,6 @@ export class Block {
       z: 2,
     }
 
-    this.experience = new Experience();
     this.scene = this.experience.scene;
     this.model = new THREE.Mesh(new THREE.BoxGeometry(this.dimensions.width, this.dimensions.height, this.dimensions.depth), new THREE.MeshStandardMaterial({ color: 0xffff00}));
     this.scene.add(this.model);

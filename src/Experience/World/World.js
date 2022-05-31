@@ -8,7 +8,9 @@ import { Tree } from './Tree/Tree.js'
 import { ZoneClient } from './Zone/ZoneClient.js'
 import * as THREE from 'three';
 import { SingleLogChunk, TechStackLogs } from './Career/TechStackLogs/TechStackLogs.js'
-import { Block } from './Blocks/Block.js'
+import { Block } from './Blocks/SampleBlock.js'
+import { sampleBlocksList } from './Blocks/Blocks.js';
+import { BlockContainer } from './Blocks/BlockContainer.js';
 
 export default class World {
   constructor()
@@ -24,7 +26,8 @@ export default class World {
     this._controls = new CharacterController({});
 
     /* Init gsap block */
-    this.block = new Block();
+    this.blockContainer = new BlockContainer(sampleBlocksList);
+    window.blocks = this.blockContainer;
 
     /* Init tree */
     this.trees = [];
