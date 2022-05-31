@@ -7,6 +7,8 @@ import { SpatialHash_Slow } from './SpatialHashGrid.js'
 import { Tree } from './Tree/Tree.js'
 import { ZoneClient } from './Zone/ZoneClient.js'
 import * as THREE from 'three';
+import { SingleLogChunk, TechStackLogs } from './Career/TechStackLogs/TechStackLogs.js'
+import { Block } from './Blocks/Block.js'
 
 export default class World {
   constructor()
@@ -21,9 +23,15 @@ export default class World {
 
     this._controls = new CharacterController({});
 
+    /* Init gsap block */
+    this.block = new Block();
+
     /* Init tree */
     this.trees = [];
     this.initTrees();
+
+    /* Init career section */
+    this.initCareerSection();
 
     // Wait for resources
     this.resources.on('ready', () =>
@@ -114,5 +122,10 @@ export default class World {
     });
 
     this.zoneClients.push(treeZoneClient);
+  }
+
+  initCareerSection() {
+    // new SingleLogChunk(new Vector3(10, 0, 0));
+    new TechStackLogs(new Vector3(10, 0, 0), 5);
   }
 }

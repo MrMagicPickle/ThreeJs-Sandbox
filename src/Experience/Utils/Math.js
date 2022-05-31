@@ -13,6 +13,10 @@ export const math = (function() {
       return Math.round(Math.random() * (b - a) + a);
     },
 
+    rand_float: function(a, b) {
+      return Math.random() * (b - a) + a;
+    },
+
     lerp: function(x, a, b) {
       return x * (b - a) + a;
     },
