@@ -12,6 +12,9 @@ export class CharacterController {
   _Init(params) {
     this.experience = new Experience();
     this.scene = this.experience.scene;
+    const { pathStartX, pathEndX } = params;
+    this.pathStartX = pathStartX;
+    this.pathEndX = pathEndX;
     this._decceleration = new THREE.Vector3(-0.0005, -0.0001, -5.0);
     this._acceleration = new THREE.Vector3(1, 0.25, 50.0);
     this._velocity = new THREE.Vector3(0, 0, 0);
@@ -143,6 +146,7 @@ export class CharacterController {
     controlObject.position.add(forward);
     controlObject.position.add(sideways);
 
+    controlObject.position.x = controlObject.position.x > 0 ? Math.min(controlObject.position.x, this.pathEndX) : Math.max(controlObject.position.x, this.pathStartX);
     this._position.copy(controlObject.position);
 
     oldPosition.copy(controlObject.position);

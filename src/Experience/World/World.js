@@ -1,4 +1,4 @@
-import { Vector3 } from 'three'
+import { Vector3 } from 'three';
 import Experience from '../Experience.js'
 import { CharacterController } from './Character/CharacterController.js'
 import Environment from './Environment.js'
@@ -11,6 +11,7 @@ import { SingleLogChunk, TechStackLogs } from './Career/TechStackLogs/TechStackL
 import { Block } from './Blocks/SampleBlock.js'
 import { sampleBlocksList } from './Blocks/Blocks.js';
 import { BlockContainer } from './Blocks/BlockContainer.js';
+import { PlatformPath } from './Path/Path.js'
 
 export default class World {
   constructor()
@@ -22,12 +23,18 @@ export default class World {
     this.zoneClients = [];
     this.initSpatialHashGrid();
 
+    /* Init path */
+    this.platformPath = new PlatformPath();
 
-    this._controls = new CharacterController({});
+    this._controls = new CharacterController({
+      pathStartX: this.platformPath.pathStartX,
+      pathEndX: this.platformPath.pathEndX,
+    });
 
     /* Init gsap block */
     this.blockContainer = new BlockContainer(sampleBlocksList);
     window.blocks = this.blockContainer;
+
 
     /* Init tree */
     this.trees = [];
