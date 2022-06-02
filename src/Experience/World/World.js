@@ -9,9 +9,10 @@ import { ZoneClient } from './Zone/ZoneClient.js'
 import * as THREE from 'three';
 import { SingleLogChunk, TechStackLogs } from './Career/TechStackLogs/TechStackLogs.js'
 import { Block } from './Blocks/SampleBlock.js'
-import { sampleBlocksList } from './Blocks/Blocks.js';
+import { introIsland, sampleBlocksList } from './Blocks/Blocks.js';
 import { BlockContainer } from './Blocks/BlockContainer.js';
 import { PlatformPath } from './Path/Path.js'
+import { GsapZone } from './Zone/GsapZone.js';
 
 export default class World {
   constructor()
@@ -33,6 +34,8 @@ export default class World {
 
     /* Init gsap block */
     this.blockContainer = new BlockContainer(sampleBlocksList);
+    this.initIntroIsland();
+
     window.blocks = this.blockContainer;
 
 
@@ -90,6 +93,9 @@ export default class World {
       this.triggerNearbyZones();
     }
 
+    /* Update GSAP zone */
+    this.introIslandTriggerZone.update();
+
     /* Update trees */
     for (let i = 0; i < this.trees.length; i++) {
       const tree = this.trees[i];
@@ -137,5 +143,11 @@ export default class World {
   initCareerSection() {
     // new SingleLogChunk(new Vector3(10, 0, 0));
     new TechStackLogs(new Vector3(10, 0, 0), 5);
+  }
+
+  initIntroIsland() {
+    this.introIsland = new BlockContainer(introIsland());
+    const zPos = 30;
+    this.introIslandTriggerZone = new GsapZone(this._controls, zPos, this.introIsland);
   }
 }

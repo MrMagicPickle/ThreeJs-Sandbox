@@ -23,6 +23,34 @@
  *   }
  * }
  */
+
+export const introIsland = () => {
+  const islandBase = {
+    color: 0x0000ff,
+    dimensions: {
+      width: 10,
+      height: 2,
+      depth: 10,
+    },
+    start: {
+      position: {
+        x: -15,
+        y: -10,
+        z: 40,
+      },
+    },
+    end: {
+      position: {
+        x: -15,
+        y: 0,
+        z: 40,
+      },
+    },
+  };
+  return [islandBase];
+};
+
+
 export const sampleBlocksList = [
   {
     color: 0xffff00,

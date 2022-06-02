@@ -4,6 +4,7 @@ import * as THREE from 'three';
 
 export class BlockContainer {
   constructor(blocks) {
+    this.isActive = false;
     this.blocks = blocks;
     this.tweens = [];
     this.init();
@@ -29,6 +30,7 @@ export class BlockContainer {
   }
 
   async activate() {
+    this.isActive = true;
     for (const tween of this.tweens) {
       tween.play();
       await delay(50);

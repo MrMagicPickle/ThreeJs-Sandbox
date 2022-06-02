@@ -23,6 +23,7 @@ export class CharacterController {
     this._animations = {};
     this._input = new CharacterControllerInput();
     this._stateMachine = new CharacterFSM(new CharacterControllerProxy(this._animations));
+    window.fox = this;
   }
 
   LoadResources() {
