@@ -111,24 +111,45 @@ export class CharacterController {
       acc.multiplyScalar(0.0);
     }
 
-    if (this._input._keys.forward) {
+    /* Fixed left / right movement. */
+    if (this._input._keys.right) {
       velocity.z += acc.z * timeInSeconds;
     }
-    if (this._input._keys.backward) {
-      velocity.z -= acc.z * timeInSeconds;
+    if (this._input._keys.left) {
+      velocity.z += acc.z * timeInSeconds;
     }
     if (this._input._keys.left) {
-      _A.set(0, 1, 0);
-      _Q.setFromAxisAngle(_A, 4.0 * Math.PI * timeInSeconds * this._acceleration.y);
-      _R.multiply(_Q);
+      if (controlObject.rotation.y !== -Math.PI ) {
+        controlObject.rotation.y = -Math.PI ;
+      }
     }
     if (this._input._keys.right) {
-      _A.set(0, 1, 0);
-      _Q.setFromAxisAngle(_A, 4.0 * -Math.PI * timeInSeconds * this._acceleration.y);
-      _R.multiply(_Q);
+      if (controlObject.rotation.y !== 0) {
+        controlObject.rotation.y = 0;
+      }
     }
 
-    controlObject.quaternion.copy(_R);
+    /* Original movement. */
+    // if (this._input._keys.forward) {
+    //   velocity.z += acc.z * timeInSeconds;
+    // }
+    // if (this._input._keys.backward) {
+    //   velocity.z -= acc.z * timeInSeconds;
+    // }
+    // if (this._input._keys.left) {
+    //   _A.set(0, 1, 0);
+    //   _Q.setFromAxisAngle(_A, 4.0 * Math.PI * timeInSeconds * this._acceleration.y);
+    //   _R.multiply(_Q);
+    // }
+    // if (this._input._keys.right) {
+    //   _A.set(0, 1, 0);
+    //   _Q.setFromAxisAngle(_A, 4.0 * -Math.PI * timeInSeconds * this._acceleration.y);
+    //   _R.multiply(_Q);
+    // }
+
+    // controlObject.quaternion.copy(_R);
+
+
 
     const oldPosition = new THREE.Vector3();
     oldPosition.copy(controlObject.position);

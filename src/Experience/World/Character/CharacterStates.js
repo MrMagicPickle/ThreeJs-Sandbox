@@ -36,7 +36,7 @@ export class WalkState extends State {
   }
 
   Update(timeElapsed, input) {
-    if (input._keys.forward || input._keys.backward) {
+    if (input._keys.left || input._keys.right) {
       if (input._keys.shift) {
         this._parent.SetState('run');
       }
@@ -84,7 +84,7 @@ export class RunState extends State {
   }
 
   Update(timeElapsed, input) {
-    if (input._keys.forward || input._keys.backward) {
+    if (input._keys.left || input._keys.right) {
       if (!input._keys.shift) {
         this._parent.SetState('walk');
       }
@@ -123,7 +123,7 @@ export class IdleState extends State {
   }
 
   Update(_, input) {
-    if (input._keys.forward || input._keys.backward) {
+    if (input._keys.left || input._keys.right) {
       this._parent.SetState('walk');
     }
   }
