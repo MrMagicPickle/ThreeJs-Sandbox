@@ -13,6 +13,23 @@ export class ThirdPersonCamera {
     window.camera = this;
   }
 
+  calculateFixedOffset() {
+    if (this.target) {
+      /* Adjust y/z value here if you want the camera angles to change. */
+      let idealOffset = new THREE.Vector3(-30, 10, 0);
+      idealOffset.add(new THREE.Vector3(0, 0, this.target.Position.z));
+      return idealOffset;
+    }
+  }
+
+  calculateFixedLookat() {
+    if (this.target) {
+      let idealLookat = new THREE.Vector3(10, 3, 0);
+      idealLookat.add(new THREE.Vector3(0, 0, this.target.Position.z));
+      return idealLookat;
+    }
+  }
+
   _CalculateIdealOffset() {
     if (this.target) {
       let idealOffset
@@ -46,14 +63,21 @@ export class ThirdPersonCamera {
     if (!this.target) {
       return;
     }
-    const idealOffset = this._CalculateIdealOffset();
-    const idealLookat = this._CalculateIdealLookat();
+    /* Third person POV */
+    // const idealOffset = this._CalculateIdealOffset();
+    // const idealLookat = this._CalculateIdealLookat();
+
+    /* Fixed camera slider */
+    const idealOffset = this.calculateFixedOffset();
+    const idealLookat = this.calculateFixedLookat();
+
     // const t = 0.05;
     // const t = 4.0 * timeElapsed;
     const t = 1.0 - Math.pow(0.001, timeElapsed);
 
     this._currentPosition.lerp(idealOffset, t);
     this._currentLookat.lerp(idealLookat, t);
+
     this._camera.instance.position.copy(this._currentPosition);
     this._camera.instance.lookAt(this._currentLookat);
   }
