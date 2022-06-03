@@ -14,17 +14,28 @@ export class BlockContainer {
   init() {
     this.experience = new Experience();
     this.scene = this.experience.scene;
+    this.resources = this.experience.resources;
     for (const block of this.blocks) {
-      const model = new THREE.Mesh(new THREE.BoxGeometry(block.dimensions.width, block.dimensions.height, block.dimensions.depth), new THREE.MeshStandardMaterial({ color: block.color}));
+      let model;
+      if (block.isCustom) {
+        model = block.model;
+        this.resources.on('ready', () => {
+          const materialTexture = this.resources.items[block.modelMaterial];
+          model.material = new THREE.MeshBasicMaterial({ map: materialTexture, alphaMap: materialTexture, transparent: true, color: 0xff00ff, });
+        });
+        model.rotation.y = block.rotation.x;
+      } else {
+        model = new THREE.Mesh(new THREE.BoxGeometry(block.dimensions.width, block.dimensions.height, block.dimensions.depth), new THREE.MeshStandardMaterial({ color: block.color}));
+      }
       this.scene.add(model);
       model.position.set(block.start.position.x, block.start.position.y, block.start.position.z);
-
       const tween = gsap.to(model.position, {
         duration: 1,
         y: block.end.position.y,
         paused: true,
         ease: 'none,'
       });
+
       this.tweens.push(tween);
     }
   }

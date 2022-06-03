@@ -62,4 +62,9 @@ export default [
         type: 'texture',
         path: 'textures/career/career-configura.png'
     },
+    {
+        name: 'aboutMeText',
+        type: 'texture',
+        path: 'textures/about/about.png',
+    },
 ]

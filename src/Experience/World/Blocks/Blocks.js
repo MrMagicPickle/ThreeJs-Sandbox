@@ -1,6 +1,8 @@
+import * as THREE from 'three';
 /*
- * All Blocks must have the following structure:
+ * All non-custom Blocks must have the following structure:
  * {
+ *   isCustom: false,
  *   color: 0xff0000,
  *   dimensions: {
  *     width: 0,
@@ -26,6 +28,7 @@
 
 export const introIsland = () => {
   const islandBase = {
+    isCustom: false,
     color: 0x0000ff,
     dimensions: {
       width: 10,
@@ -34,20 +37,46 @@ export const introIsland = () => {
     },
     start: {
       position: {
-        x: -15,
+        x: 15,
         y: -10,
         z: 40,
       },
     },
     end: {
       position: {
-        x: -15,
+        x: 15,
         y: 0,
         z: 40,
       },
     },
   };
-  return [islandBase];
+  const introText = {
+    isCustom: true,
+    model: new THREE.Mesh(
+      new THREE.PlaneGeometry(10, 5),
+      new THREE.MeshBasicMaterial({})
+    ),
+    modelMaterial: 'aboutMeText',
+    rotation: {
+      x: - (Math.PI * 0.5),
+    },
+    start: {
+      position: {
+        x: 15,
+        y: -10,
+        z: 40,
+      },
+    },
+    end: {
+      position: {
+        x: 15,
+        y: 5,
+        z: 40,
+      },
+    },
+  };
+
+  return [islandBase, introText];
 };
 
 
