@@ -84,6 +84,58 @@ export const introIsland = () => {
   return [islandBase, introText];
 };
 
+export const companiesIsland = () => {
+  const islandBase = {
+    isCustom: false,
+    color: 0xff0000,
+    dimensions: {
+      width: 10,
+      height: 2,
+      depth: 10,
+    },
+    start: {
+      position: {
+        x: 15,
+        y: -10,
+        z: 90,
+      },
+    },
+    end: {
+      position: {
+        x: 15,
+        y: 0,
+        z: 90,
+      },
+    },
+  };
+  const introText = {
+    isCustom: true,
+    model: new THREE.Mesh(
+      new THREE.PlaneGeometry(25, 12.5),
+      new THREE.MeshBasicMaterial({})
+    ),
+    modelMaterial: 'aboutMeText',
+    rotation: {
+      x: - (Math.PI * 0.5),
+    },
+    start: {
+      position: {
+        x: 15,
+        y: -10,
+        z: 90,
+      },
+    },
+    end: {
+      position: {
+        x: 15,
+        y: 5,
+        z: 90,
+      },
+    },
+  };
+
+  return [islandBase, introText];
+};
 
 export const sampleBlocksList = [
   {

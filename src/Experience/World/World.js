@@ -9,7 +9,7 @@ import { ZoneClient } from './Zone/ZoneClient.js'
 import * as THREE from 'three';
 import { SingleLogChunk, TechStackLogs } from './Career/TechStackLogs/TechStackLogs.js'
 import { Block } from './Blocks/SampleBlock.js'
-import { introIsland, sampleBlocksList } from './Blocks/Blocks.js';
+import { companiesIsland, introIsland, sampleBlocksList } from './Blocks/Blocks.js';
 import { BlockContainer } from './Blocks/BlockContainer.js';
 import { PlatformPath } from './Path/Path.js'
 import { GsapZone } from './Zone/GsapZone.js';
@@ -35,6 +35,7 @@ export default class World {
     /* Init gsap block */
     this.blockContainer = new BlockContainer(sampleBlocksList);
     this.initIntroIsland();
+    this.initCompaniesIsland();
 
     window.blocks = this.blockContainer;
 
@@ -95,6 +96,7 @@ export default class World {
 
     /* Update GSAP zone */
     this.introIslandTriggerZone.update();
+    this.companiesIslandTriggerZone.update();
 
     /* Update trees */
     for (let i = 0; i < this.trees.length; i++) {
@@ -149,5 +151,11 @@ export default class World {
     this.introIsland = new BlockContainer(introIsland());
     const zPos = 30;
     this.introIslandTriggerZone = new GsapZone(this._controls, zPos, this.introIsland);
+  }
+
+  initCompaniesIsland() {
+    this.companiesIsland = new BlockContainer(companiesIsland());
+    const zPos = 75;
+    this.companiesIslandTriggerZone = new GsapZone(this._controls, zPos, this.companiesIsland);
   }
 }
