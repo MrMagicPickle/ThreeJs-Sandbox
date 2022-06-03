@@ -21,7 +21,7 @@ export class BlockContainer {
         model = block.model;
         this.resources.on('ready', () => {
           const materialTexture = this.resources.items[block.modelMaterial];
-          model.material = new THREE.MeshBasicMaterial({ map: materialTexture, alphaMap: materialTexture, transparent: true, color: 0xff00ff, });
+          model.material = new THREE.MeshBasicMaterial({ map: materialTexture, alphaMap: materialTexture, transparent: true, color: 0x0000ff, });
         });
         model.rotation.y = block.rotation.x;
       } else {

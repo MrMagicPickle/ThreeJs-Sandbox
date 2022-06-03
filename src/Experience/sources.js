@@ -65,6 +65,6 @@ export default [
     {
         name: 'aboutMeText',
         type: 'texture',
-        path: 'textures/about/about.png',
+        path: 'textures/about/about3.png',
     },
 ]

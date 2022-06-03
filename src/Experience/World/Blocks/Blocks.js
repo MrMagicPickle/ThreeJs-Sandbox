@@ -1,5 +1,10 @@
 import * as THREE from 'three';
 /*
+ * For word plane textures, we use 1024 x 512 images
+ * Also, we use width: 25, height: 12.5 for the Geometry dimensions
+ * This allows better readability.
+ */
+/*
  * All non-custom Blocks must have the following structure:
  * {
  *   isCustom: false,
@@ -29,7 +34,7 @@ import * as THREE from 'three';
 export const introIsland = () => {
   const islandBase = {
     isCustom: false,
-    color: 0x0000ff,
+    color: 0xff0000,
     dimensions: {
       width: 10,
       height: 2,
@@ -53,7 +58,7 @@ export const introIsland = () => {
   const introText = {
     isCustom: true,
     model: new THREE.Mesh(
-      new THREE.PlaneGeometry(10, 5),
+      new THREE.PlaneGeometry(25, 12.5),
       new THREE.MeshBasicMaterial({})
     ),
     modelMaterial: 'aboutMeText',
