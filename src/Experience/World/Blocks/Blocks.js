@@ -31,6 +31,7 @@ import * as THREE from 'three';
  * }
  */
 
+/* Intro Island */
 export const introIsland = () => {
   const islandBase = {
     isCustom: false,
@@ -87,6 +88,7 @@ export const introIsland = () => {
   return [islandBase, introText];
 };
 
+/* Company Island */
 export const companiesIsland = () => {
   const islandBase = {
     isCustom: false,
@@ -139,10 +141,233 @@ export const companiesIsland = () => {
       },
     },
   };
-
-  return [islandBase, compassLogo];
+  const nikeLogo = {
+    name: 'Nike',
+    isCustom: true,
+    model: new THREE.Mesh(
+      new THREE.PlaneGeometry(5, 2.5),
+      new THREE.MeshBasicMaterial({})
+    ),
+    modelMaterial: 'nikeWhiteTextLogo',
+    isImage: true,
+    rotation: {
+      x: - (Math.PI * 0.5),
+    },
+    start: {
+      position: {
+        x: 15,
+        y: -12.5,
+        z: 90,
+      },
+    },
+    end: {
+      position: {
+        x: 15,
+        y: 2.5,
+        z: 90,
+      },
+    },
+  };
+  const nikeBlackLogo = {
+    name: 'Nike',
+    isCustom: true,
+    model: new THREE.Mesh(
+      new THREE.PlaneGeometry(5, 2.5),
+      new THREE.MeshBasicMaterial({})
+    ),
+    modelMaterial: 'nikeBlackLogo',
+    isImage: true,
+    rotation: {
+      x: - (Math.PI * 0.5),
+    },
+    start: {
+      position: {
+        x: 15,
+        y: -12.5,
+        z: 95,
+      },
+    },
+    end: {
+      position: {
+        x: 15,
+        y: 2.5,
+        z: 95,
+      },
+    },
+  };
+  const configuraLogo = {
+    name: 'Configura',
+    isCustom: true,
+    model: new THREE.Mesh(
+      new THREE.PlaneGeometry(5, 2.5),
+      new THREE.MeshBasicMaterial({})
+    ),
+    modelMaterial: 'configuraLogo',
+    isImage: true,
+    rotation: {
+      x: - (Math.PI * 0.5),
+    },
+    start: {
+      position: {
+        x: 15,
+        y: -10,
+        z: 95,
+      },
+    },
+    end: {
+      position: {
+        x: 15,
+        y: 5,
+        z: 95,
+      },
+    },
+  };
+  const snappymobLogo = {
+    name: 'Snappymob',
+    isCustom: true,
+    model: new THREE.Mesh(
+      new THREE.PlaneGeometry(5, 2.5),
+      new THREE.MeshBasicMaterial({})
+    ),
+    modelMaterial: 'snappymobLogo',
+    isImage: true,
+    rotation: {
+      x: - (Math.PI * 0.5),
+    },
+    start: {
+      position: {
+        x: 15,
+        y: -10,
+        z: 100,
+      },
+    },
+    end: {
+      position: {
+        x: 15,
+        y: 5,
+        z: 100,
+      },
+    },
+  };
+  const kiehlsLogo = {
+    name: 'Kiehls',
+    isCustom: true,
+    model: new THREE.Mesh(
+      new THREE.PlaneGeometry(5, 2.5),
+      new THREE.MeshBasicMaterial({})
+    ),
+    modelMaterial: 'kiehlsLogo',
+    isImage: true,
+    rotation: {
+      x: - (Math.PI * 0.5),
+    },
+    start: {
+      position: {
+        x: 15,
+        y: -10,
+        z: 100,
+      },
+    },
+    end: {
+      position: {
+        x: 15,
+        y: 2.5,
+        z: 100,
+      },
+    },
+  };
+  const ikeaLogo = {
+    name: 'Ikea',
+    isCustom: true,
+    model: new THREE.Mesh(
+      new THREE.PlaneGeometry(5, 2.5),
+      new THREE.MeshBasicMaterial({})
+    ),
+    modelMaterial: 'ikeaLogo',
+    isImage: true,
+    rotation: {
+      x: - (Math.PI * 0.5),
+    },
+    start: {
+      position: {
+        x: 15,
+        y: -10,
+        z: 90,
+      },
+    },
+    end: {
+      position: {
+        x: 15,
+        y: 7.5,
+        z: 90,
+      },
+    },
+  };
+  const brickmagicLogo = {
+    name: 'BrickMagic',
+    isCustom: true,
+    model: new THREE.Mesh(
+      new THREE.PlaneGeometry(5, 2.5),
+      new THREE.MeshBasicMaterial({})
+    ),
+    modelMaterial: 'brickmagicLogo',
+    isImage: true,
+    rotation: {
+      x: - (Math.PI * 0.5),
+    },
+    start: {
+      position: {
+        x: 15,
+        y: -10,
+        z: 95,
+      },
+    },
+    end: {
+      position: {
+        x: 15,
+        y: 7.5,
+        z: 95,
+      },
+    },
+  };
+  const jbiLogo = {
+    name: 'JBI',
+    isCustom: true,
+    model: new THREE.Mesh(
+      new THREE.PlaneGeometry(5, 2.5),
+      new THREE.MeshBasicMaterial({})
+    ),
+    modelMaterial: 'jbiLogo',
+    isImage: true,
+    rotation: {
+      x: - (Math.PI * 0.5),
+    },
+    start: {
+      position: {
+        x: 15,
+        y: -10,
+        z: 100,
+      },
+    },
+    end: {
+      position: {
+        x: 15,
+        y: 7.5,
+        z: 100,
+      },
+    },
+  };
+  return [islandBase, compassLogo, nikeLogo, nikeBlackLogo, configuraLogo, snappymobLogo, kiehlsLogo, ikeaLogo, brickmagicLogo, jbiLogo];
 };
 
+
+/* Review Island */
+export const reviewIsland = () => {
+  return [];
+};
+
+
+/* Sample List */
 export const sampleBlocksList = [
   {
     color: 0xffff00,

@@ -72,4 +72,44 @@ export default [
         type: 'texture',
         path: 'textures/companies/compass-interactive.png',
     },
+    {
+        name: 'configuraLogo',
+        type: 'texture',
+        path: 'textures/companies/configura.png',
+    },
+    {
+        name: 'snappymobLogo',
+        type: 'texture',
+        path: 'textures/companies/snappymob.png',
+    },
+    {
+        name: 'nikeWhiteTextLogo',
+        type: 'texture',
+        path: 'textures/companies/nike-white-text.png',
+    },
+    {
+        name: 'nikeBlackLogo',
+        type: 'texture',
+        path: 'textures/companies/nike-black.png',
+    },
+    {
+        name: 'kiehlsLogo',
+        type: 'texture',
+        path: 'textures/companies/kiehls.png',
+    },
+    {
+        name: 'ikeaLogo',
+        type: 'texture',
+        path: 'textures/companies/ikea.png',
+    },
+    {
+        name: 'brickmagicLogo',
+        type: 'texture',
+        path: 'textures/companies/brickmagic.png',
+    },
+    {
+        name: 'jbiLogo',
+        type: 'texture',
+        path: 'textures/companies/jbi.png',
+    },
 ];
