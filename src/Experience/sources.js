@@ -67,4 +67,9 @@ export default [
         type: 'texture',
         path: 'textures/about/about3.png',
     },
-]
+    {
+        name: 'compassInteractiveLogo',
+        type: 'texture',
+        path: 'textures/companies/compass-interactive.png',
+    },
+];

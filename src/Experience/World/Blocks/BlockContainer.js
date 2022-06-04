@@ -21,11 +21,19 @@ export class BlockContainer {
         model = block.model;
         this.resources.on('ready', () => {
           const materialTexture = this.resources.items[block.modelMaterial];
-          model.material = new THREE.MeshBasicMaterial({ map: materialTexture, alphaMap: materialTexture, transparent: true, color: 0x0000ff, });
+          /* This encoding code is needed because our renderer's outputEncoding is
+             THREE.sRGBEncoding.
+             https://discourse.threejs.org/t/image-texture-is-looks-white/19494 */
+          materialTexture.encoding = THREE.sRGBEncoding;
+          if (!block.isImage) {
+            model.material = new THREE.MeshBasicMaterial({ map: materialTexture, alphaMap: materialTexture, transparent: true, color: 0x0000ff, });
+          } else {
+            model.material = new THREE.MeshBasicMaterial({ map: materialTexture });
+          }
         });
         model.rotation.y = block.rotation.x;
       } else {
-        model = new THREE.Mesh(new THREE.BoxGeometry(block.dimensions.width, block.dimensions.height, block.dimensions.depth), new THREE.MeshStandardMaterial({ color: block.color}));
+        model = new THREE.Mesh(new THREE.BoxGeometry(block.dimensions.width, block.dimensions.height, block.dimensions.depth), new THREE.MeshStandardMaterial({ color: block.color }));
       }
       this.scene.add(model);
       model.position.set(block.start.position.x, block.start.position.y, block.start.position.z);

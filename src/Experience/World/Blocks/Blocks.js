@@ -34,6 +34,7 @@ import * as THREE from 'three';
 export const introIsland = () => {
   const islandBase = {
     isCustom: false,
+    isImage: false,
     color: 0xff0000,
     dimensions: {
       width: 10,
@@ -56,7 +57,9 @@ export const introIsland = () => {
     },
   };
   const introText = {
+    name: 'Intro text',
     isCustom: true,
+    isImage: false,
     model: new THREE.Mesh(
       new THREE.PlaneGeometry(25, 12.5),
       new THREE.MeshBasicMaterial({})
@@ -87,6 +90,7 @@ export const introIsland = () => {
 export const companiesIsland = () => {
   const islandBase = {
     isCustom: false,
+    isImage: false,
     color: 0xff0000,
     dimensions: {
       width: 10,
@@ -108,13 +112,15 @@ export const companiesIsland = () => {
       },
     },
   };
-  const introText = {
+  const compassLogo = {
+    name: 'Compass',
     isCustom: true,
     model: new THREE.Mesh(
-      new THREE.PlaneGeometry(25, 12.5),
+      new THREE.PlaneGeometry(5, 2.5),
       new THREE.MeshBasicMaterial({})
     ),
-    modelMaterial: 'aboutMeText',
+    modelMaterial: 'compassInteractiveLogo',
+    isImage: true,
     rotation: {
       x: - (Math.PI * 0.5),
     },
@@ -134,7 +140,7 @@ export const companiesIsland = () => {
     },
   };
 
-  return [islandBase, introText];
+  return [islandBase, compassLogo];
 };
 
 export const sampleBlocksList = [
