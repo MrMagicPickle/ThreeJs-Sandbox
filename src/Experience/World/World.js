@@ -13,6 +13,7 @@ import { companiesIsland, introIsland, sampleBlocksList } from './Blocks/Blocks.
 import { BlockContainer } from './Blocks/BlockContainer.js';
 import { PlatformPath } from './Path/Path.js'
 import { GsapZone } from './Zone/GsapZone.js';
+import { ScreenMonitor } from './Blocks/ScreenMonitor/ScreenMonitor.js';
 
 export default class World {
   constructor()
@@ -144,7 +145,7 @@ export default class World {
 
   initCareerSection() {
     // new SingleLogChunk(new Vector3(10, 0, 0));
-    new TechStackLogs(new Vector3(10, 0, 0), 5);
+    // new TechStackLogs(new Vector3(10, 0, 0), 5);
   }
 
   initIntroIsland() {
@@ -157,5 +158,6 @@ export default class World {
     this.companiesIsland = new BlockContainer(companiesIsland());
     const zPos = 75;
     this.companiesIslandTriggerZone = new GsapZone(this._controls, zPos, this.companiesIsland);
+    const screenMonitor = new ScreenMonitor(new Vector3(15, 5, 0));
   }
 }

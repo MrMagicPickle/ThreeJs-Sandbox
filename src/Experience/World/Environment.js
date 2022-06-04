@@ -37,10 +37,10 @@ export default class Environment
         // this.sunLight.shadow.camera.right = 300;
         // this.sunLight.shadow.camera.left = -300;
         // this.sunLight.shadow.camera.bottom = -300;
-        this.helper = new DirectionalLightHelper(this.sunLight);
-        this.cameraHelper = new CameraHelper(this.sunLight.shadow.camera);
-        this.scene.add(this.helper);
-        this.scene.add(this.cameraHelper);
+        // this.helper = new DirectionalLightHelper(this.sunLight);
+        // this.cameraHelper = new CameraHelper(this.sunLight.shadow.camera);
+        // this.scene.add(this.helper);
+        // this.scene.add(this.cameraHelper);
         this.scene.add(new THREE.AxesHelper());
         // Debug
         if(this.debug.active)
