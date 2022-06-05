@@ -117,240 +117,157 @@ export const companiesIsland = () => {
       },
     },
   };
-  const compassLogo = {
-    name: 'Compass',
-    isCustom: true,
-    model: new THREE.Mesh(
-      new THREE.PlaneGeometry(5, 2.5),
-      new THREE.MeshBasicMaterial({})
-    ),
-    modelMaterial: 'compassInteractiveLogo',
-    isImage: true,
-    rotation: {
-      x: - (Math.PI * 0.5),
-    },
+
+  const zPositions = [
+    [80, 85.7, 91.4],
+    [80, 85.7, 91.4],
+    [82.85, 88.55],
+  ];
+  const yPositions = [
+    9.3,
+    5.9,
+    2.5,
+  ];
+
+  const compassLogo = new CompanyLogo('compassInteractiveLogo', 'Compass');
+  const compassScreen = {
+    isInstance: true,
+    instance: new ScreenMonitor(compassLogo, new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
     start: {
       position: {
-        x: 15,
-        y: -10,
-        z: 90,
+        x: 15, y: -10, z: zPositions[0][1],
       },
     },
     end: {
       position: {
-        x: 15,
-        y: 5,
-        z: 90,
-      },
-    },
-  };
-  const nikeLogo = {
-    name: 'Nike',
-    isCustom: true,
-    model: new THREE.Mesh(
-      new THREE.PlaneGeometry(5, 2.5),
-      new THREE.MeshBasicMaterial({})
-    ),
-    modelMaterial: 'nikeWhiteTextLogo',
-    isImage: true,
-    rotation: {
-      x: - (Math.PI * 0.5),
-    },
-    start: {
-      position: {
-        x: 15,
-        y: -12.5,
-        z: 90,
-      },
-    },
-    end: {
-      position: {
-        x: 15,
-        y: 2.5,
-        z: 90,
-      },
-    },
-  };
-  const nikeBlackLogo = {
-    name: 'Nike',
-    isCustom: true,
-    model: new THREE.Mesh(
-      new THREE.PlaneGeometry(5, 2.5),
-      new THREE.MeshBasicMaterial({})
-    ),
-    modelMaterial: 'nikeBlackLogo',
-    isImage: true,
-    rotation: {
-      x: - (Math.PI * 0.5),
-    },
-    start: {
-      position: {
-        x: 15,
-        y: -12.5,
-        z: 95,
-      },
-    },
-    end: {
-      position: {
-        x: 15,
-        y: 2.5,
-        z: 95,
-      },
-    },
-  };
-  const configuraLogo = {
-    name: 'Configura',
-    isCustom: true,
-    model: new THREE.Mesh(
-      new THREE.PlaneGeometry(5, 2.5),
-      new THREE.MeshBasicMaterial({})
-    ),
-    modelMaterial: 'configuraLogo',
-    isImage: true,
-    rotation: {
-      x: - (Math.PI * 0.5),
-    },
-    start: {
-      position: {
-        x: 15,
-        y: -10,
-        z: 95,
-      },
-    },
-    end: {
-      position: {
-        x: 15,
-        y: 5,
-        z: 95,
+        x: 15, y: yPositions[0], z: zPositions[0][1],
       },
     },
   };
 
-  const kiehlsLogo = {
-    name: 'Kiehls',
-    isCustom: true,
-    model: new THREE.Mesh(
-      new THREE.PlaneGeometry(5, 2.5),
-      new THREE.MeshBasicMaterial({})
-    ),
-    modelMaterial: 'kiehlsLogo',
-    isImage: true,
-    rotation: {
-      x: - (Math.PI * 0.5),
-    },
+  const nikeBlackLogo = new CompanyLogo('nikeBlackLogo', 'Nike');
+  const nikeScreen = {
+    isInstance: true,
+    instance: new ScreenMonitor(nikeBlackLogo, new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
     start: {
       position: {
-        x: 15,
-        y: -10,
-        z: 100,
+        x: 15, y: -10, z: zPositions[2][1],
       },
     },
     end: {
       position: {
-        x: 15,
-        y: 2.5,
-        z: 100,
+        x: 15, y: yPositions[2], z: zPositions[2][1],
       },
     },
   };
-  const ikeaLogo = {
-    name: 'Ikea',
-    isCustom: true,
-    model: new THREE.Mesh(
-      new THREE.PlaneGeometry(5, 2.5),
-      new THREE.MeshBasicMaterial({})
-    ),
-    modelMaterial: 'ikeaLogo',
-    isImage: true,
-    rotation: {
-      x: - (Math.PI * 0.5),
-    },
+
+  const configuraLogo = new CompanyLogo('configuraLogo', 'Configura');
+  const configuraScreen = {
+    isInstance: true,
+    instance: new ScreenMonitor(configuraLogo, new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
     start: {
       position: {
-        x: 15,
-        y: -10,
-        z: 90,
+        x: 15, y: -10, z: zPositions[1][0],
       },
     },
     end: {
       position: {
-        x: 15,
-        y: 7.5,
-        z: 90,
+        x: 15, y: yPositions[1], z: zPositions[1][0],
       },
     },
   };
-  const brickmagicLogo = {
-    name: 'BrickMagic',
-    isCustom: true,
-    model: new THREE.Mesh(
-      new THREE.PlaneGeometry(5, 2.5),
-      new THREE.MeshBasicMaterial({})
-    ),
-    modelMaterial: 'brickmagicLogo',
-    isImage: true,
-    rotation: {
-      x: - (Math.PI * 0.5),
-    },
+
+  const kiehlsLogo = new CompanyLogo('kiehlsLogo', 'Kiehls');
+  const kiehlsScreen = {
+    isInstance: true,
+    instance: new ScreenMonitor(kiehlsLogo, new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
     start: {
       position: {
-        x: 15,
-        y: -10,
-        z: 95,
+        x: 15, y: -10, z: zPositions[2][0],
       },
     },
     end: {
       position: {
-        x: 15,
-        y: 7.5,
-        z: 95,
+        x: 15, y: yPositions[2], z: zPositions[2][0],
       },
     },
   };
-  const jbiLogo = {
-    name: 'JBI',
-    isCustom: true,
-    model: new THREE.Mesh(
-      new THREE.PlaneGeometry(5, 2.5),
-      new THREE.MeshBasicMaterial({})
-    ),
-    modelMaterial: 'jbiLogo',
-    isImage: true,
-    rotation: {
-      x: - (Math.PI * 0.5),
-    },
+
+  const ikeaLogo = new CompanyLogo('ikeaLogo', 'Ikea');
+  const ikeaScreen = {
+    isInstance: true,
+    instance: new ScreenMonitor(ikeaLogo, new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
     start: {
       position: {
-        x: 15,
-        y: -10,
-        z: 100,
+        x: 15, y: -10, z: zPositions[0][0],
       },
     },
     end: {
       position: {
-        x: 15,
-        y: 7.5,
-        z: 100,
+        x: 15, y: yPositions[0], z: zPositions[0][0],
       },
     },
   };
+
+  const brickmagicLogo = new CompanyLogo('brickmagicLogo', 'BrickMagic');
+  const brickmagicScreen = {
+    isInstance: true,
+    instance: new ScreenMonitor(brickmagicLogo, new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
+    start: {
+      position: {
+        x: 15, y: -10, z: zPositions[0][2],
+      },
+    },
+    end: {
+      position: {
+        x: 15, y: yPositions[0], z: zPositions[0][2],
+      },
+    },
+  };
+
+  const jbiLogo = new CompanyLogo('jbiLogo', 'JBI');
+  const jbiScreen = {
+    isInstance: true,
+    instance: new ScreenMonitor(jbiLogo, new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
+    start: {
+      position: {
+        x: 15, y: -10, z: zPositions[1][2],
+      },
+    },
+    end: {
+      position: {
+        x: 15, y: yPositions[1], z: zPositions[1][2],
+      },
+    },
+  };
+
   const snappymobLogo = new CompanyLogo('snappymobLogo', 'Snappymob');
-  const screenMonitor = {
+  const snappymobScreen = {
     isInstance: true,
     instance: new ScreenMonitor(snappymobLogo, new Vector3(15, -10, 0), new Vector3(15, 5, 0)),
     start: {
       position: {
-        x: 15, y: -10, z: 105,
+        x: 15, y: -10, z: zPositions[1][1],
       },
     },
     end: {
       position: {
-        x: 15, y: 5, z: 105,
+        x: 15, y: yPositions[1], z: zPositions[1][1],
       },
     },
   };
 
-  return [islandBase, compassLogo, nikeLogo, nikeBlackLogo, configuraLogo, kiehlsLogo, ikeaLogo, brickmagicLogo, jbiLogo, screenMonitor];
+  return [
+    islandBase,
+    compassScreen,
+    nikeScreen,
+    configuraScreen,
+    kiehlsScreen,
+    ikeaScreen,
+    brickmagicScreen,
+    jbiScreen,
+    snappymobScreen,
+  ];
 };
 
 
