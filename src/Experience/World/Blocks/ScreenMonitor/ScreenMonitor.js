@@ -3,8 +3,10 @@ import { Vector3 } from 'three';
 import Experience from '../../../Experience';
 
 export class ScreenMonitor {
-  constructor(position) {
-    this.position = position;
+  constructor(companyLogo, startPosition, endPosition) {
+    this.companyLogo = companyLogo;
+    this.startPosition = startPosition;
+    this.endPosition = endPosition;
     this.init();
   }
 
@@ -46,8 +48,9 @@ export class ScreenMonitor {
     this.screenMonitor.add(monitorBottom);
     this.screenMonitor.add(monitorRight);
     this.screenMonitor.add(monitorLeft);
+    this.screenMonitor.add(this.companyLogo.model);
     this.screenMonitor.rotation.y = - (Math.PI * 0.5);
-    this.screenMonitor.position.set(this.position.x, this.position.y, this.position.z);
+    this.screenMonitor.position.set(this.startPosition.x, this.startPosition.y, this.startPosition.z);
 
     monitorLeft.position.x = -(this.width / 2) ;
     monitorLeft.rotation.y = (Math.PI * 0.5);
@@ -62,16 +65,33 @@ export class ScreenMonitor {
     monitorBottom.rotation.z = (Math.PI * 0.5);
 
     monitorBack.position.z = -this.depth/2;
-    this.experience.scene.add(this.screenMonitor);
-    window.screenMonitor = this;
+    // window.screenMonitor = this;
   }
 
   get size() {
     let measure = new Vector3();
-    // const box =  this.screenMonitor.getSize(measure);
-    // return measure;
     const box = new THREE.Box3().setFromObject(this.screenMonitor);
     box.getSize(measure);
     return measure;
+  }
+
+  get model() {
+    return this.screenMonitor;
+  }
+
+  get start() {
+    return {
+      position: this.startPosition,
+    };
+  }
+
+  get end() {
+    return {
+      position: this.endPosition,
+    };
+  }
+
+  get position() {
+    return this.model.position;
   }
 }

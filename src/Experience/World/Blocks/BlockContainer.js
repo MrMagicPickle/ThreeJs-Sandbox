@@ -17,7 +17,9 @@ export class BlockContainer {
     this.resources = this.experience.resources;
     for (const block of this.blocks) {
       let model;
-      if (block.isCustom) {
+      if (block.isInstance) {
+        model = block.instance.model;
+      } else if (block.isCustom) {
         model = block.model;
         this.resources.on('ready', () => {
           const materialTexture = this.resources.items[block.modelMaterial];

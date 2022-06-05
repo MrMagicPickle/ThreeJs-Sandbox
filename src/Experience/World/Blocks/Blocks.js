@@ -1,4 +1,7 @@
 import * as THREE from 'three';
+import { Vector3 } from 'three';
+import { CompanyLogo } from './ScreenMonitor/CompanyLogo';
+import { ScreenMonitor } from './ScreenMonitor/ScreenMonitor';
 /*
  * For word plane textures, we use 1024 x 512 images
  * Also, we use width: 25, height: 12.5 for the Geometry dimensions
@@ -222,33 +225,7 @@ export const companiesIsland = () => {
       },
     },
   };
-  const snappymobLogo = {
-    name: 'Snappymob',
-    isCustom: true,
-    model: new THREE.Mesh(
-      new THREE.PlaneGeometry(5, 2.5),
-      new THREE.MeshBasicMaterial({})
-    ),
-    modelMaterial: 'snappymobLogo',
-    isImage: true,
-    rotation: {
-      x: - (Math.PI * 0.5),
-    },
-    start: {
-      position: {
-        x: 15,
-        y: -10,
-        z: 100,
-      },
-    },
-    end: {
-      position: {
-        x: 15,
-        y: 5,
-        z: 100,
-      },
-    },
-  };
+
   const kiehlsLogo = {
     name: 'Kiehls',
     isCustom: true,
@@ -357,7 +334,23 @@ export const companiesIsland = () => {
       },
     },
   };
-  return [islandBase, compassLogo, nikeLogo, nikeBlackLogo, configuraLogo, snappymobLogo, kiehlsLogo, ikeaLogo, brickmagicLogo, jbiLogo];
+  const snappymobLogo = new CompanyLogo('snappymobLogo', 'Snappymob');
+  const screenMonitor = {
+    isInstance: true,
+    instance: new ScreenMonitor(snappymobLogo, new Vector3(15, -10, 0), new Vector3(15, 5, 0)),
+    start: {
+      position: {
+        x: 15, y: -10, z: 105,
+      },
+    },
+    end: {
+      position: {
+        x: 15, y: 5, z: 105,
+      },
+    },
+  };
+
+  return [islandBase, compassLogo, nikeLogo, nikeBlackLogo, configuraLogo, kiehlsLogo, ikeaLogo, brickmagicLogo, jbiLogo, screenMonitor];
 };
 
 
@@ -524,3 +517,33 @@ export const sampleBlocksList = [
     },
   },
 ];
+
+
+/* Company logo example for reference */
+  // const snappymobLogo = {
+  //   name: 'Snappymob',
+  //   isCustom: true,
+  //   model: new THREE.Mesh(
+  //     new THREE.PlaneGeometry(5, 2.5),
+  //     new THREE.MeshBasicMaterial({})
+  //   ),
+  //   modelMaterial: 'snappymobLogo',
+  //   isImage: true,
+  //   rotation: {
+  //     x: - (Math.PI * 0.5),
+  //   },
+  //   start: {
+  //     position: {
+  //       x: 15,
+  //       y: -10,
+  //       z: 105,
+  //     },
+  //   },
+  //   end: {
+  //     position: {
+  //       x: 15,
+  //       y: 5,
+  //       z: 105,
+  //     },
+  //   },
+  // };

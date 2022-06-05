@@ -158,6 +158,5 @@ export default class World {
     this.companiesIsland = new BlockContainer(companiesIsland());
     const zPos = 75;
     this.companiesIslandTriggerZone = new GsapZone(this._controls, zPos, this.companiesIsland);
-    const screenMonitor = new ScreenMonitor(new Vector3(15, 5, 0));
   }
 }
