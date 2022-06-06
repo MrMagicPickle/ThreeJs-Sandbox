@@ -271,9 +271,34 @@ export const companiesIsland = () => {
 };
 
 
-/* Review Island */
+/* Review Island, Z > 130 */
 export const reviewIsland = () => {
-  return [];
+  const islandBase = {
+    isCustom: false,
+    isImage: false,
+    color: 0xff00ff,
+    dimensions: {
+      width: 10,
+      height: 2,
+      depth: 10,
+    },
+    start: {
+      position: {
+        x: 15,
+        y: -10,
+        z: 130,
+      },
+    },
+    end: {
+      position: {
+        x: 15,
+        y: 0,
+        z: 130,
+      },
+    },
+  };
+
+  return [islandBase];
 };
 
 
