@@ -112,4 +112,11 @@ export default [
         type: 'texture',
         path: 'textures/companies/jbi.png',
     },
+
+    /* Testimonials */
+    {
+        name: 'howardReview',
+        type: 'texture',
+        path: 'textures/testimonials/howard.png',
+    },
 ];
