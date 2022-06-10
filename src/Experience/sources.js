@@ -119,4 +119,9 @@ export default [
         type: 'texture',
         path: 'textures/testimonials/howard.png',
     },
+    {
+        name: 'jasonReview',
+        type: 'texture',
+        path: 'textures/testimonials/jason.png',
+    },
 ];

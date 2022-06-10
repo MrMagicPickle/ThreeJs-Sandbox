@@ -14,6 +14,7 @@ import { BlockContainer } from './Blocks/BlockContainer.js';
 import { PlatformPath } from './Path/Path.js'
 import { GsapZone } from './Zone/GsapZone.js';
 import { ScreenMonitor } from './Blocks/ScreenMonitor/ScreenMonitor.js';
+import { ReviewScreen } from './Blocks/ReviewIsland/ReviewScreen.js';
 
 export default class World {
   constructor()
@@ -99,7 +100,7 @@ export default class World {
     /* Update GSAP zone */
     this.introIslandTriggerZone.update();
     this.companiesIslandTriggerZone.update();
-    this.reviewIslandTriggerZone.update();
+    // this.reviewIslandTriggerZone.update();
 
     /* Update trees */
     for (let i = 0; i < this.trees.length; i++) {
@@ -163,12 +164,14 @@ export default class World {
   }
 
   initReviewIsland() {
-    this.reviewIsland = new BlockContainer(reviewIsland());
-    const zPos = 115;
-    this.reviewIslandTriggerZone = new GsapZone(
-      this._controls,
-      zPos,
-      this.reviewIsland
-    );
+    // this.reviewIsland = new BlockContainer(reviewIsland());
+    // const zPos = 115;
+    // this.reviewIslandTriggerZone = new GsapZone(
+    //   this._controls,
+    //   zPos,
+    //   this.reviewIsland
+    // );
+    new ReviewScreen(['howardReview', 'jasonReview'], new Vector3(1, 5, 130), new Vector3(1, 5, 130));
+
   }
 }

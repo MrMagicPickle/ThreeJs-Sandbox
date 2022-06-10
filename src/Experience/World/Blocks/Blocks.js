@@ -297,8 +297,34 @@ export const reviewIsland = () => {
       },
     },
   };
-
-  return [islandBase];
+  const reviewScreen = {
+    name: 'Review',
+    isCustom: true,
+    model: new THREE.Mesh(
+      new THREE.PlaneGeometry(20, 10),
+      new THREE.MeshBasicMaterial({})
+    ),
+    modelMaterial: 'howardReview',
+    isImage: true,
+    rotation: {
+      x: - (Math.PI * 0.5),
+    },
+    start: {
+      position: {
+        x: 1,
+        y: -10,
+        z: 130,
+      },
+    },
+    end: {
+      position: {
+        x: 1,
+        y: 5,
+        z: 130,
+      },
+    },
+  };
+  return [islandBase, reviewScreen];
 };
 
 
