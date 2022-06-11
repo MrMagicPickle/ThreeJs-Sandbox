@@ -1,5 +1,7 @@
 import * as THREE from 'three';
+import { BoxGeometry } from 'three';
 import Experience from '../../../Experience';
+import { makeInteractable } from '../../../Interactable';
 import { ThirdPersonCamera } from '../../../ThirdPersonCamera';
 import { CompanyLogoMaterial, ReviewPlaneGeometry } from '../../../Utils/Reusables';
 
@@ -22,6 +24,8 @@ export class ReviewScreen {
     this.reviewMaterials = [];
     this.currReviewIndex = 0;
 
+    this.group = new THREE.Group();
+
     this.reviewScreen = new THREE.Mesh(
       ReviewPlaneGeometry,
       CompanyLogoMaterial,
@@ -40,16 +44,43 @@ export class ReviewScreen {
       }
       this.reviewScreen.material = this.reviewMaterials[this.currReviewIndex];
     });
-    this.reviewScreen.rotation.y = -(Math.PI * 0.5);
-    this.reviewScreen.position.set(1, 5, 130);
-    this.scene.add(this.reviewScreen);
+    this.group.add(this.reviewScreen);
+
+    this.leftButton = new THREE.Mesh(
+      new BoxGeometry(1, 1, 1),
+      new THREE.MeshBasicMaterial({ color: 0xff0000 }),
+    );
+    this.leftButton.position.set(-3, 2.5, 2.5);
+    this.group.add(this.leftButton);
+
+    this.rightButton = new THREE.Mesh(
+      new BoxGeometry(1, 1, 1),
+      new THREE.MeshBasicMaterial({ color: 0x00ff00 }),
+    );
+    this.rightButton.position.set(3, 2.5, 2.5);
+    this.group.add(this.rightButton);
+
+    this.group.rotation.y = -(Math.PI * 0.5);
+    this.group.position.set(5, 5, 130);
+    this.scene.add(this.group);
 
     this.showReview();
     window.reviewScreen = this;
+
+    /* Make buttons interactable */
+    makeInteractable(this.leftButton);
+    makeInteractable(this.rightButton);
+
+    /* Handle on click events for buttons */
+    this.handleButtonsOnClick();
+  }
+
+  handleButtonsOnClick() {
+
   }
 
   get model() {
-    return this.reviewScreen;
+    return this.group;
   }
 
   showReview() {
@@ -59,7 +90,7 @@ export class ReviewScreen {
     this.reviewScreen.material = this.reviewMaterials[this.currReviewIndex];
     this.sliderTimer = setTimeout(() => {
       this.nextReview();
-    }, 3000);
+    }, 5000);
   }
 
   nextReview() {

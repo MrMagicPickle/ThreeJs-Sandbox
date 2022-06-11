@@ -171,7 +171,7 @@ export default class World {
     //   zPos,
     //   this.reviewIsland
     // );
-    new ReviewScreen(['howardReview', 'jasonReview'], new Vector3(1, 5, 130), new Vector3(1, 5, 130));
+    this.reviewScreen = new ReviewScreen(['howardReview', 'jasonReview'], new Vector3(1, 5, 130), new Vector3(1, 5, 130));
 
   }
 }
