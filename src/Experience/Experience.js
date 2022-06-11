@@ -10,6 +10,7 @@ import Resources from './Utils/Resources.js'
 
 import sources from './sources.js'
 import { ThirdPersonCamera } from './ThirdPersonCamera.js'
+import { Raycaster, Vector2 } from 'three'
 
 let instance = null
 
@@ -31,6 +32,7 @@ export default class Experience
         this.canvas = _canvas
 
         // Setup
+        this.interactables = [];
         this.debug = new Debug()
         this.sizes = new Sizes()
         this.time = new Time()
@@ -39,6 +41,10 @@ export default class Experience
         this.camera = new ThirdPersonCamera();
         this.renderer = new Renderer()
         this.world = new World()
+
+        /* Raycaster */
+        this.raycaster = new Raycaster();
+        this.currentIntersect;
 
         // Resize event
         this.sizes.on('resize', () =>
@@ -51,6 +57,13 @@ export default class Experience
         {
             this.update()
         })
+
+        /* Mouse */
+        window.mouse = new Vector2();
+        window.addEventListener('mousemove', (event) => {
+            window.mouse.x = event.clientX / this.sizes.width * 2 - 1
+            window.mouse.y = - (event.clientY / this.sizes.height) * 2 + 1
+        });
     }
 
     resize()
@@ -66,6 +79,16 @@ export default class Experience
     {
         this.world.update()
         this.camera.Update(this.time.delta);
+
+        /* Handle mouse intersect with Raycaster */
+        this.raycaster.setFromCamera(window.mouse, this.camera._camera.instance);
+        const intersects = this.raycaster.intersectObjects(this.interactables);
+        if (intersects.length > 0) {
+          this.currentIntersect = intersects[0];
+        } else {
+          this.currentIntersect = undefined;
+        }
+
         this.renderer.update()
     }
 
