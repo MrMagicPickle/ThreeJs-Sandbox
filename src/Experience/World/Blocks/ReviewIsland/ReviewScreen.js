@@ -76,7 +76,17 @@ export class ReviewScreen {
   }
 
   handleButtonsOnClick() {
-
+    this.experience.mouse.on('click', () => {
+      const { currentIntersect } = this.experience;
+      if (!currentIntersect) {
+        return;
+      }
+      if (currentIntersect.object === this.leftButton) {
+        this.prevReview();
+      } else if (currentIntersect.object === this.rightButton) {
+        this.nextReview();
+      }
+    });
   }
 
   get model() {
