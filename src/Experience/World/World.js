@@ -9,7 +9,7 @@ import { ZoneClient } from './Zone/ZoneClient.js'
 import * as THREE from 'three';
 import { SingleLogChunk, TechStackLogs } from './Career/TechStackLogs/TechStackLogs.js'
 import { Block } from './Blocks/SampleBlock.js'
-import { companiesIsland, introIsland, reviewIsland, sampleBlocksList } from './Blocks/Blocks.js';
+import { companiesIsland, introIsland, linkIsland, reviewIsland, sampleBlocksList } from './Blocks/Blocks.js';
 import { BlockContainer } from './Blocks/BlockContainer.js';
 import { PlatformPath } from './Path/Path.js'
 import { GsapZone } from './Zone/GsapZone.js';
@@ -39,6 +39,7 @@ export default class World {
     this.initIntroIsland();
     this.initCompaniesIsland();
     this.initReviewIsland();
+    this.initLinkIsland();
 
     window.blocks = this.blockContainer;
 
@@ -101,6 +102,7 @@ export default class World {
     this.introIslandTriggerZone.update();
     this.companiesIslandTriggerZone.update();
     // this.reviewIslandTriggerZone.update();
+    this.linkIslandTriggerZone.update();
 
     /* Update trees */
     for (let i = 0; i < this.trees.length; i++) {
@@ -172,6 +174,15 @@ export default class World {
     //   this.reviewIsland
     // );
     this.reviewScreen = new ReviewScreen(['howardReview', 'jasonReview'], new Vector3(1, 5, 130), new Vector3(1, 5, 130));
+  }
 
+  initLinkIsland() {
+    this.linkIsland = new BlockContainer(linkIsland());
+    const zPos = 155;
+    this.linkIslandTriggerZone = new GsapZone(
+      this._controls,
+      zPos,
+      this.linkIsland,
+    );
   }
 }

@@ -327,6 +327,33 @@ export const reviewIsland = () => {
   return [islandBase, reviewScreen];
 };
 
+export const linkIsland = () => {
+  const islandBase = {
+    isCustom: false,
+    isImage: false,
+    color: 0xff00ff,
+    dimensions: {
+      width: 10,
+      height: 2,
+      depth: 10,
+    },
+    start: {
+      position: {
+        x: 15,
+        y: -10,
+        z: 170,
+      },
+    },
+    end: {
+      position: {
+        x: 15,
+        y: 0,
+        z: 170,
+      },
+    },
+  };
+  return [islandBase];
+}
 
 /* Sample List */
 export const sampleBlocksList = [
