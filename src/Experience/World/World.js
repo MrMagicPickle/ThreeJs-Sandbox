@@ -64,6 +64,7 @@ export default class World {
       /* Load room scene from blender */
       const bakedTexture = this.experience.resources.items.roomTexture;
       bakedTexture.flipY = false;
+      bakedTexture.encoding = THREE.sRGBEncoding;
       // const roomTexture = new THREE.MeshBasicMaterial({ color: 0xff0000 });
       const roomTexture = new THREE.MeshBasicMaterial({ map: bakedTexture });
 
@@ -73,7 +74,7 @@ export default class World {
       });
 
       roomModel.position.set(5, 0, -10);
-      roomModel.rotation.y = - Math.PI;
+      roomModel.rotation.y = - Math.PI * 1.25;
 
       this.scene.add(roomModel);
 
