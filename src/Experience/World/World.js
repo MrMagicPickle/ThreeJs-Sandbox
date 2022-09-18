@@ -61,6 +61,22 @@ export default class World {
       this.foxClient = this.spatialHashGrid.NewClient([this._controls.Position.x, this._controls.Position.z], [5, 5]);
       this.experience.camera.setTarget(this._controls);
 
+      /* Load room scene from blender */
+      const bakedTexture = this.experience.resources.items.roomTexture;
+      bakedTexture.flipY = false;
+      // const roomTexture = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+      const roomTexture = new THREE.MeshBasicMaterial({ map: bakedTexture });
+
+      const roomModel = this.experience.resources.items.roomModel.scene;
+      roomModel.traverse((child) => {
+        child.material = roomTexture;
+      });
+
+      roomModel.position.set(5, 0, -10);
+      roomModel.rotation.y = - Math.PI;
+
+      this.scene.add(roomModel);
+
       /* Test text plane on wall */
       const textPlaneTexture = this.experience.resources.items.careerText1;
       const textPlaneGeometry = new THREE.PlaneGeometry(10, 5);

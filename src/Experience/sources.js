@@ -124,4 +124,15 @@ export default [
         type: 'texture',
         path: 'textures/testimonials/jason.png',
     },
+    /* Room scene */
+    {
+        name: 'roomModel',
+        type: 'gltfModel',
+        path: 'models/Room/room1-unwrap.glb',
+    },
+    {
+        name: 'roomTexture',
+        type: 'texture',
+        path: 'models/Room/baked.jpg',
+    },
 ];
