@@ -128,11 +128,11 @@ export default [
     {
         name: 'roomModel',
         type: 'gltfModel',
-        path: 'models/Room/room1-unwrap2.glb',
+        path: 'models/Room/room1-unwrap3.glb',
     },
     {
         name: 'roomTexture',
         type: 'texture',
-        path: 'models/Room/baked2.jpg',
+        path: 'models/Room/baked3.jpg',
     },
 ];
