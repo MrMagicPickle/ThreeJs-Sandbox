@@ -15,6 +15,7 @@ import { PlatformPath } from './Path/Path.js'
 import { GsapZone } from './Zone/GsapZone.js';
 import { ScreenMonitor } from './Blocks/ScreenMonitor/ScreenMonitor.js';
 import { ReviewScreen } from './Blocks/ReviewIsland/ReviewScreen.js';
+// import { CompanyLogoPlaneGeometry } from '../Experience/Utils/Reusables.js';
 
 export default class World {
   constructor()
@@ -41,6 +42,9 @@ export default class World {
     this.initReviewIsland();
     this.initLinkIsland();
 
+    /* Init room */
+    this.roomModel = null;
+
     window.blocks = this.blockContainer;
 
 
@@ -65,18 +69,9 @@ export default class World {
       const bakedTexture = this.experience.resources.items.roomTexture;
       bakedTexture.flipY = false;
       bakedTexture.encoding = THREE.sRGBEncoding;
-      // const roomTexture = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-      const roomTexture = new THREE.MeshBasicMaterial({ map: bakedTexture });
 
-      const roomModel = this.experience.resources.items.roomModel.scene;
-      roomModel.traverse((child) => {
-        child.material = roomTexture;
-      });
 
-      roomModel.position.set(5, 0, -10);
-      roomModel.rotation.y = - Math.PI * 1.25;
-
-      this.scene.add(roomModel);
+      this.initRoom();
 
       /* Test text plane on wall */
       const textPlaneTexture = this.experience.resources.items.careerText1;
@@ -202,4 +197,51 @@ export default class World {
       this.linkIsland,
     );
   }
+
+  initRoom() {
+    this.roomModel = this.experience.resources.items.roomModel.scene;
+    this.roomModel.position.set(5, 0, -10);
+    this.roomModel.rotation.y = - Math.PI * 1.25;
+    const bakedTexture = this.experience.resources.items.roomTexture;
+    const roomTexture = new THREE.MeshBasicMaterial({ map: bakedTexture });
+
+
+    this.roomModel.traverse((child) => {
+      child.material = roomTexture;
+      /* Add logo screen for main monitor */
+      if (child.name === 'mainMonitor') {
+        const seekLogo = this.experience.resources.items.seekLogo;
+        seekLogo.encoding = THREE.sRGBEncoding;
+        const seekLogoTexture = new THREE.MeshBasicMaterial({ map: seekLogo });
+        const seekLogoPlane = new THREE.PlaneGeometry(5, 2.5);
+        const seekLogoMesh = new THREE.Mesh(
+          seekLogoPlane,
+          seekLogoTexture,
+        );
+        const childPos = new Vector3();
+        child.getWorldPosition(childPos);
+        seekLogoMesh.position.set(childPos.x - 0.2 , childPos.y, childPos.z - 0.15);
+        seekLogoMesh.rotation.set(child.rotation.x, child.rotation.y + this.roomModel.rotation.y, child.rotation.z);
+        this.scene.add(seekLogoMesh);
+      } else if (child.name.includes('monitor')) {
+        // const seekLogo = this.experience.resources.items.seekLogo;
+        // seekLogo.encoding = THREE.sRGBEncoding;
+        // const seekLogoTexture = new THREE.MeshBasicMaterial({ map: seekLogo });
+        // const seekLogoPlane = new THREE.PlaneGeometry(5, 2.5);
+        // const seekLogoMesh = new THREE.Mesh(
+        //   seekLogoPlane,
+        //   seekLogoTexture,
+        // );
+        // const childPos = new Vector3();
+        // child.getWorldPosition(childPos);
+        // seekLogoMesh.position.set(childPos.x - 0.2 , childPos.y, childPos.z - 0.15);
+        // seekLogoMesh.rotation.set(child.rotation.x, child.rotation.y + this.roomModel.rotation.y, child.rotation.z);
+        // this.scene.add(seekLogoMesh);
+      }
+    });
+
+    this.scene.add(this.roomModel);
+  }
+
+
 }

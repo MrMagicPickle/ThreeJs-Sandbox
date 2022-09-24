@@ -68,6 +68,11 @@ export default [
         path: 'textures/about/about3.png',
     },
     {
+        name: 'seekLogo',
+        type: 'texture',
+        path: 'textures/companies/seek.png',
+    },
+    {
         name: 'compassInteractiveLogo',
         type: 'texture',
         path: 'textures/companies/compass-interactive.png',
@@ -128,11 +133,11 @@ export default [
     {
         name: 'roomModel',
         type: 'gltfModel',
-        path: 'models/Room/room1-unwrap3.glb',
+        path: 'models/Room/room1-unwrap4.glb',
     },
     {
         name: 'roomTexture',
         type: 'texture',
-        path: 'models/Room/baked3.jpg',
+        path: 'models/Room/baked5.jpg',
     },
 ];
