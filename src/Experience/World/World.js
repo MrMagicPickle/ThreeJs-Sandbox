@@ -109,7 +109,9 @@ export default class World {
       }
       this.triggerNearbyZones();
     }
-
+    if (this.roomModel) {
+      this.roomModel.rotation.y += 0.005;
+    }
     /* Update GSAP zone */
     this.introIslandTriggerZone.update();
     this.companiesIslandTriggerZone.update();
@@ -222,7 +224,7 @@ export default class World {
         child.getWorldPosition(childPos);
         seekLogoMesh.position.set(childPos.x - 0.2 , childPos.y, childPos.z - 0.15);
         seekLogoMesh.rotation.set(child.rotation.x, child.rotation.y + this.roomModel.rotation.y, child.rotation.z);
-        this.scene.add(seekLogoMesh);
+        // this.scene.add(seekLogoMesh);
       } else if (child.name.includes('monitor')) {
         // const seekLogo = this.experience.resources.items.seekLogo;
         // seekLogo.encoding = THREE.sRGBEncoding;
@@ -239,8 +241,25 @@ export default class World {
         // this.scene.add(seekLogoMesh);
       }
     });
-
+    const seekLogo = this.experience.resources.items.seekLogo;
+    // seekLogo.flipY = false;
+    // seekLogo.rotation = -Math.PI;
+    seekLogo.wrapS = THREE.RepeatWrapping;
+    seekLogo.repeat.x = - 1;
+    seekLogo.encoding = THREE.sRGBEncoding;
+    const seekLogoTexture = new THREE.MeshBasicMaterial({ map: seekLogo });
+    // const seekLogoPlane = new THREE.PlaneGeometry(5, 2.5);
+    // const seekLogoMesh = new THREE.Mesh(
+    //   seekLogoPlane,
+    //   seekLogoTexture,
+    // );
+    // const mainMonitorScreen = this.roomModel.children.find(x => x.name === 'mainMonitorScreen');
+    // mainMonitorScreen.material = seekLogoTexture;
+    // console.log(mainMonitorScreen, '< sc');
+    const scaleFactor = 0.3;
+    this.roomModel.scale.set(scaleFactor, scaleFactor, scaleFactor);
     this.scene.add(this.roomModel);
+    // console.log(this.roomModel, '<< roomModel');
   }
 
 

@@ -133,11 +133,13 @@ export default [
     {
         name: 'roomModel',
         type: 'gltfModel',
-        path: 'models/Room/room1-unwrap4.glb',
+        // path: 'models/Room/room1-unwrap5.glb',
+        path: 'models/FishingVillage/fishing_village.glb',
     },
     {
         name: 'roomTexture',
         type: 'texture',
-        path: 'models/Room/baked5.jpg',
+        // path: 'models/Room/baked5.jpg',
+        path: 'models/FishingVillage/bakedv2.jpg',
     },
 ];
