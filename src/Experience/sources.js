@@ -134,12 +134,38 @@ export default [
         name: 'roomModel',
         type: 'gltfModel',
         // path: 'models/Room/room1-unwrap5.glb',
-        path: 'models/FishingVillage/fishing_village.glb',
+        path: 'models/FishingVillage/fishing_village_house_shop.glb',
     },
     {
         name: 'roomTexture',
         type: 'texture',
         // path: 'models/Room/baked5.jpg',
-        path: 'models/FishingVillage/bakedv2.jpg',
+        path: 'models/FishingVillage/baked_house_shop.jpg',
+    },
+
+    {
+        name: 'roomModel2',
+        type: 'gltfModel',
+        // path: 'models/Room/room1-unwrap5.glb',
+        path: 'models/FishingVillage/fishing_village_cliff_planks.glb',
+    },
+    {
+        name: 'roomTexture2',
+        type: 'texture',
+        // path: 'models/Room/baked5.jpg',
+        path: 'models/FishingVillage/baked_cliff_planks.jpg',
+    },
+
+    {
+        name: 'roomModel3',
+        type: 'gltfModel',
+        // path: 'models/Room/room1-unwrap5.glb',
+        path: 'models/FishingVillage/fishing_village_rest.glb',
+    },
+    {
+        name: 'roomTexture3',
+        type: 'texture',
+        // path: 'models/Room/baked5.jpg',
+        path: 'models/FishingVillage/baked_rest.jpg',
     },
 ];

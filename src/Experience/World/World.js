@@ -66,9 +66,9 @@ export default class World {
       this.experience.camera.setTarget(this._controls);
 
       /* Load room scene from blender */
-      const bakedTexture = this.experience.resources.items.roomTexture;
-      bakedTexture.flipY = false;
-      bakedTexture.encoding = THREE.sRGBEncoding;
+      // const bakedTexture = this.experience.resources.items.roomTexture;
+      // bakedTexture.flipY = false;
+      // bakedTexture.encoding = THREE.sRGBEncoding;
 
 
       this.initRoom();
@@ -111,6 +111,12 @@ export default class World {
     }
     if (this.roomModel) {
       this.roomModel.rotation.y += 0.005;
+    }
+    if (this.roomModel2) {
+      this.roomModel2.rotation.y += 0.005;
+    }
+    if (this.roomModel3) {
+      this.roomModel3.rotation.y += 0.005;
     }
     /* Update GSAP zone */
     this.introIslandTriggerZone.update();
@@ -205,6 +211,9 @@ export default class World {
     this.roomModel.position.set(5, 0, -10);
     this.roomModel.rotation.y = - Math.PI * 1.25;
     const bakedTexture = this.experience.resources.items.roomTexture;
+    bakedTexture.flipY = false;
+    bakedTexture.encoding = THREE.sRGBEncoding;
+
     const roomTexture = new THREE.MeshBasicMaterial({ map: bakedTexture });
 
 
@@ -260,6 +269,36 @@ export default class World {
     this.roomModel.scale.set(scaleFactor, scaleFactor, scaleFactor);
     this.scene.add(this.roomModel);
     // console.log(this.roomModel, '<< roomModel');
+
+    const roomModel2 = this.experience.resources.items.roomModel2.scene;
+    roomModel2.position.set(5, 0, -10);
+    roomModel2.rotation.y = - Math.PI * 1.25;
+    const bakedTexture2 = this.experience.resources.items.roomTexture2;
+    bakedTexture2.flipY = false;
+    bakedTexture2.encoding = THREE.sRGBEncoding;
+    const roomTexture2 = new THREE.MeshBasicMaterial({ map: bakedTexture2 });
+    roomModel2.traverse((child) => {
+      child.material = roomTexture2;
+    });
+
+    roomModel2.scale.set(scaleFactor, scaleFactor, scaleFactor);
+    this.roomModel2 = roomModel2;
+    this.scene.add(roomModel2);
+
+    const roomModel3 = this.experience.resources.items.roomModel3.scene;
+    roomModel3.position.set(5, 0, -10);
+    roomModel3.rotation.y = - Math.PI * 1.25;
+    const bakedTexture3 = this.experience.resources.items.roomTexture3;
+    bakedTexture3.flipY = false;
+    bakedTexture3.encoding = THREE.sRGBEncoding;
+    const roomTexture3 = new THREE.MeshBasicMaterial({ map: bakedTexture3 });
+    roomModel3.traverse((child) => {
+      child.material = roomTexture3;
+    });
+
+    roomModel3.scale.set(scaleFactor, scaleFactor, scaleFactor);
+    this.roomModel3 = roomModel3;
+    this.scene.add(roomModel3);
   }
 
 

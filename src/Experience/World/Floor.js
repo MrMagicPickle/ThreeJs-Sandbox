@@ -19,12 +19,19 @@ export default class Floor
         // this.colors.bottomLeft = '#f5aa58'
         // this.colors.bottomRight = '#fccf92'
 
-        this.colors.topLeft = '#17C45C'
-        this.colors.topRight = '#1AD665'
+        // Green hue
+        // this.colors.topLeft = '#17C45C'
+        // this.colors.topRight = '#1AD665'
 
-        this.colors.bottomLeft = '#2CD692'
-        this.colors.bottomRight = '#36F3A8'
+        // this.colors.bottomLeft = '#2CD692'
+        // this.colors.bottomRight = '#36F3A8'
 
+        // Dark blue hue
+        this.colors.topLeft = '#3711b8'
+        this.colors.topRight = '#4212ed'
+
+        this.colors.bottomLeft = '#1f3a84'
+        this.colors.bottomRight = '#09246b'
 
         this.setGeometry()
         this.setTextures()
