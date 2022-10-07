@@ -16,7 +16,8 @@ export class ThirdPersonCamera {
   calculateFixedOffset() {
     if (this.target) {
       /* Adjust y/z value here if you want the camera angles to change. */
-      let idealOffset = new THREE.Vector3(-30, 10, 0);
+      // let idealOffset = new THREE.Vector3(-30, 10, 0);
+      let idealOffset = new THREE.Vector3(-30, 20, 0);
       idealOffset.add(new THREE.Vector3(0, 0, this.target.Position.z));
       return idealOffset;
     }

@@ -1,4 +1,4 @@
-import { Vector3 } from 'three';
+import { PlaneGeometry, Vector3 } from 'three';
 import Experience from '../Experience.js'
 import { CharacterController } from './Character/CharacterController.js'
 import Environment from './Environment.js'
@@ -15,6 +15,7 @@ import { PlatformPath } from './Path/Path.js'
 import { GsapZone } from './Zone/GsapZone.js';
 import { ScreenMonitor } from './Blocks/ScreenMonitor/ScreenMonitor.js';
 import { ReviewScreen } from './Blocks/ReviewIsland/ReviewScreen.js';
+import { water } from './Water/Water.js';
 // import { CompanyLogoPlaneGeometry } from '../Experience/Utils/Reusables.js';
 
 export default class World {
@@ -26,6 +27,7 @@ export default class World {
     this.time = this.experience.time;
     this.zoneClients = [];
     this.initSpatialHashGrid();
+    this.clock = new THREE.Clock();
 
     /* Init path */
     this.platformPath = new PlatformPath();
@@ -117,6 +119,13 @@ export default class World {
     }
     if (this.roomModel3) {
       this.roomModel3.rotation.y += 0.005;
+    }
+    if (this.roomModel4) {
+      this.roomModel4.rotation.y += 0.005;
+    }
+    if (this.water) {
+      const elapsedTime = this.clock.getElapsedTime();
+      this.water.material.uniforms.uTime.value = elapsedTime;
     }
     /* Update GSAP zone */
     this.introIslandTriggerZone.update();
@@ -299,6 +308,31 @@ export default class World {
     roomModel3.scale.set(scaleFactor, scaleFactor, scaleFactor);
     this.roomModel3 = roomModel3;
     this.scene.add(roomModel3);
+
+    const roomModel4 = this.experience.resources.items.roomModel4.scene;
+    roomModel4.position.set(5, 0, -10);
+    roomModel4.rotation.y = - Math.PI * 1.25;
+    const bakedTexture4 = this.experience.resources.items.roomTexture4;
+    bakedTexture4.flipY = false;
+    bakedTexture4.encoding = THREE.sRGBEncoding;
+    const roomTexture4 = new THREE.MeshBasicMaterial({ map: bakedTexture4 });
+    roomModel4.traverse((child) => {
+      child.material = roomTexture4;
+    });
+
+    roomModel4.scale.set(scaleFactor, scaleFactor, scaleFactor);
+    this.roomModel4 = roomModel4;
+    this.scene.add(roomModel4);
+
+
+    // const planeGeometry = new THREE.PlaneGeometry(50, 50);
+    // const planeMaterial = new THREE.MeshBasicMaterial({ color: 0x51D3AD });
+    // const planeMesh = new THREE.Mesh(planeGeometry, planeMaterial);
+    // // planeMesh.position.y = -2;
+    // planeMesh.rotation.x = -Math.PI * 0.5;
+    // this.scene.add(planeMesh);
+    this.water = water;
+    this.scene.add(water);
   }
 
 

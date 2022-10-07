@@ -168,4 +168,17 @@ export default [
         // path: 'models/Room/baked5.jpg',
         path: 'models/FishingVillage/baked_rest.jpg',
     },
+    {
+        name: 'roomModel4',
+        type: 'gltfModel',
+        // path: 'models/Room/room1-unwrap5.glb',
+        path: 'models/FishingVillage/fishing_village_sushi_roof.glb',
+    },
+    {
+        name: 'roomTexture4',
+        type: 'texture',
+        // path: 'models/Room/baked5.jpg',
+        path: 'models/FishingVillage/baked_sushi_roof.jpg',
+    },
+
 ];
