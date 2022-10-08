@@ -16,6 +16,7 @@ import { GsapZone } from './Zone/GsapZone.js';
 import { ScreenMonitor } from './Blocks/ScreenMonitor/ScreenMonitor.js';
 import { ReviewScreen } from './Blocks/ReviewIsland/ReviewScreen.js';
 import { water } from './Water/Water.js';
+import { fireflies } from './LightParticles/LightParticles.js';
 // import { CompanyLogoPlaneGeometry } from '../Experience/Utils/Reusables.js';
 
 export default class World {
@@ -127,6 +128,11 @@ export default class World {
       const elapsedTime = this.clock.getElapsedTime();
       this.water.material.uniforms.uTime.value = elapsedTime;
     }
+    if (this.fireflies) {
+      const elapsedTime = this.clock.getElapsedTime();
+      this.fireflies.material.uniforms.uTime.value = elapsedTime;
+    }
+
     /* Update GSAP zone */
     this.introIslandTriggerZone.update();
     this.companiesIslandTriggerZone.update();
@@ -333,6 +339,9 @@ export default class World {
     // this.scene.add(planeMesh);
     this.water = water;
     this.scene.add(water);
+
+    this.fireflies = fireflies;
+    this.scene.add(fireflies);
   }
 
 
